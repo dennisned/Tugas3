@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perhitungan Nilai Mahasiswa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .input-group {
+            margin: 10px 0;
+        }
+        label {
+            display: inline-block;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <h2>APLIKASI PENGHITUNG NILAI</h2>
+    <h3>Masukan Nilai Anda</h3>
+    
+    <div class="input-group">
+        <label>Presensi:</label>
+        <input type="number" id="presensi" value="0" min="0" max="100">
+    </div>
+    
+    <div class="input-group">
+        <label>Tugas:</label>
+        <input type="number" id="tugas" value="0" min="0" max="100">
+    </div>
+    
+    <div class="input-group">
+        <label>UTS:</label>
+        <input type="number" id="uts" value="0" min="0" max="100">
+    </div>
+    
+    <div class="input-group">
+        <label>UAS:</label>
+        <input type="number" id="uas" value="0" min="0" max="100">
+    </div>
+    
+    <button onclick="hitungNilai()">Hitung</button>
+    
+    <div id="hasil" style="margin-top: 20px;"></div>
+
+    <script>
+        function hitungNilai() {
+            // Ambil nilai dari input
+            let presensi = parseFloat(document.getElementById('presensi').value) || 0;
+            let tugas = parseFloat(document.getElementById('tugas').value) || 0;
+            let uts = parseFloat(document.getElementById('uts').value) || 0;
+            let uas = parseFloat(document.getElementById('uas').value) || 0;
+            
+            // Hitung nilai akhir
+            let nilaiAkhir = (presensi * 0.1) + (tugas * 0.2) + (uts * 0.3) + (uas * 0.4);
+            
+            // Tentukan huruf mutu
+            let hurufMutu;
+            
+            if (nilaiAkhir > 80) hurufMutu = "A";
+            else if (nilaiAkhir > 75) hurufMutu = "B+";
+            else if (nilaiAkhir > 70) hurufMutu = "B";
+            else if (nilaiAkhir > 65) hurufMutu = "B-";
+            else if (nilaiAkhir > 60) hurufMutu = "C+";
+            else if (nilaiAkhir > 55) hurufMutu = "C";
+            else if (nilaiAkhir > 50) hurufMutu = "C-";
+            else if (nilaiAkhir > 30) hurufMutu = "D";
+            else hurufMutu = "E";
+            
+            // Tampilkan hasil
+            document.getElementById('hasil').innerHTML = `
+                <h3>Hasil Perhitungan:</h3>
+                <p>Nilai Akhir: ${nilaiAkhir.toFixed(2)}</p>
+                <p>Huruf Mutu: ${hurufMutu}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
